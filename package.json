@@ -1,6 +1,6 @@
 {
   "name": "js-lib",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "My javascript utility library for doing things and stuff",
   "main": "index.js",
   "scripts": {
