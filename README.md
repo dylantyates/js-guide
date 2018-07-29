@@ -1,6 +1,6 @@
 # js-lib
 
-![GitHub release](https://img.shields.io/badge/release-v0-blue.svg)
+![GitHub release](https://img.shields.io/badge/release-v0.0.0-blue.svg)(https://github.com/NathanUrwin/cookiecutter-git/releases/tag/v0.0.0)
 [![Development status](https://img.shields.io/badge/status-planning-red.svg)](ROADMAP.md)
 ![Build Status](https://img.shields.io/badge/build-unknown-lightgrey.svg)
 ![Build coverage](https://img.shields.io/badge/codecov-0%25-lightgrey.svg)
