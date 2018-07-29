@@ -5,8 +5,6 @@
 [![Build Status](https://img.shields.io/badge/build-unknown-lightgrey.svg)](https://travis-ci.org/dylantyates/js-lib)
 [![Build coverage](https://img.shields.io/badge/codecov-0%25-lightgrey.svg)](https://codecov.io/gh/dylantyates/js-lib)
 
-> A bunch of cool javascript
-
 My javascript utility library for doing things and stuff
 
 _**Note:** This project was automatically created by [cookiecutter-git](https://github.com/NathanUrwin/cookiecutter-git)! :cookie:_
@@ -14,12 +12,43 @@ _**Note:** This project was automatically created by [cookiecutter-git](https://
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Development](#development)
   - [Future](#future)
   - [History](#history)
   - [Community](#community)
 - [Credits](#credits)
 - [License](#license)
+
+## Requirements
+
+- [Homebrew](https://brew.sh/)
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [polymer-cli](https://www.polymer-project.org/3.0/start/install-3-0/)
+
+## Installation
+
+```bash
+# Install Homebrew
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install Node.js and npm
+$ brew install node
+
+# Install polymer-cli (globally)
+$ npm install -g polymer-cli
+```
+
+## Usage
+
+```bash
+# Git clone @dylantyates js-lib in a directory of your choosing
+$ git clone https://github.com/dylantyates/js-lib.git
+$ cd js-lib
+```
 
 ## Development
 
