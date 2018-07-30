@@ -4,9 +4,37 @@
     <meta charset="utf-8">
     <title>Workbox Service Worker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css">
     <!-- Insert Workbox Service Worker Script -->
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+             // Notifier Element
+            var WT = document.getElementById("WorkboxToast");
+            console.log(WT);
+
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+              // Registration was successful
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+              // Registration was not successful
+              WT.innerHTML = '<strong style="margin-right:10px;">❌</strong>' + err;
+              WT.className = "open slide-down-fade error";
+              console.log(WT);
+              console.log('ServiceWorker registration failed: ', err);
+            });
+          });
+        }
+      </script>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div id="WorkboxToast"></div>
+    <section class="flex">
+        <img src="workbox.png" height="192" width="192" alt="Workbox Logo">
+        <h1>Workbox Service Worker</h1>
+        <p>Test your precache and runtime caching strategies.</p>
+    </section>
   </body>
 </html>

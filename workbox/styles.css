@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  max-width: 100%;
+  background-color: #e0e0e0;
+  color: #424242;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 1.4em;
+  text-align: center;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 40px;
+  font-weight: 900;
+  color: #545454;
+}
+
+img {
+  max-width: 100%;
+}
+
+code {
+  background-color: #37474f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+#WorkboxToast {
+  visibility: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 1090;
+  left: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  text-align: left;
+  font-weight: 600;
+  line-height: 2em;
+  transition: all 0.4s ease;
+}
+
+.open {
+  transform: translateY(10px);
+  visibility: visible !important;
+}
+
+.default {
+  background-color: #212121;
+}
+
+.success {
+  background-color: #2E7D32;
+  color: #fff;
+}
+
+.warning {
+  background-color: #F9A825;
+  color: #fff;
+}
+
+.error {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+}
+
+.flex {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  border-radius: 2px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.flex > div {
+  width: 220px;
+  height: 220px;
+  background-color: #f1f1f1;
+}
+
+
