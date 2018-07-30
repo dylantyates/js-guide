@@ -1,5 +1,7 @@
-
 # Created by https://www.gitignore.io/api/windows,macos,linux,git
+
+# Node
+node_modules
 
 ### Git ###
 *.orig
