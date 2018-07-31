@@ -1,6 +1,20 @@
 # workbox
 
-Workbox testing for now
+My workbox guide
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Precaching](#precaching)
+  1. [Revisions](#revisions)
+- [Development](#development)
+  - [Future](#future)
+  - [History](#history)
+  - [Community](#community)
+- [Credits](#credits)
+- [License](#license)
 
 ## Requirements
 
@@ -16,11 +30,11 @@ $ npm install -g workbox-cli
 $ workbox wizard
 ```
 
-## Workbox Precaching
+## Precaching
 
 There are many mistakes I made when first working with service workers. Here are some of the more frequent mistakes I made and how to correct them.
 
-### 1. Precache Revisions Update On New Service Worker Build
+### 1. Revisions
 
 #### How It Works
 
@@ -30,9 +44,9 @@ Precaching assets in `globPatterns` will serve content from the ServiceWorker. L
 
 `Chrome > Developer Tools > Network Tab`
 
-This means that the user will always receive this revision of the css until you generate a new service worker.
+This means that the user will always receive precached assets by associative revision hash from your last generated service worker.
 
-#### Solution
+#### Development Steps
 
 Rebuild the service worker for a new
 
@@ -40,16 +54,38 @@ Rebuild the service worker for a new
 $ workbox generateSW workbox-config.js
 ```
 
-Now your revision for your `styles.css` changes from
+Now your revisions for precached assets in your generated `sw.js` have been updated.
+
+<hr>
+
+#### Example
+
+Previously generated `sw.js`
 
 ```js
-"revision": "[old hash]"
+  {
+    "url": "index.html",
+    "revision": "351c397cf0439a0b42e33b2a5370a668"
+  },
+  {
+    "url": "styles.css",
+    "revision": "0a853908487fd3fa70753ec2e9b48def"
+  }
 ```
 
-to
+Newly generated `sw.js`
 
 ```js
-"revision": "[new hash]"
+{
+    "url": "index.html",
+    "revision": "243f397cf0439a0487fd3fac2e9b48df"
+  },
+  {
+    "url": "styles.css",
+    "revision": "3908487fe33b2a397cf04r3b2a5370a6"
+  }
 ```
 
-This allows workbox-precaching to know when the file has changed and update it.
+<hr>
+
+Above is a simple example of how the revision hashes change. This allows workbox-precaching to know when the file has changed and update it.
