@@ -8,13 +8,7 @@ My workbox guide
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Precaching](#precaching)
-  1. [Revisions](#revisions)
-- [Development](#development)
-  - [Future](#future)
-  - [History](#history)
-  - [Community](#community)
-- [Credits](#credits)
-- [License](#license)
+  - [Revisions](#revisions)
 
 ## Requirements
 
@@ -32,11 +26,9 @@ $ workbox wizard
 
 ## Precaching
 
-There are many mistakes I made when first working with service workers. Here are some of the more frequent mistakes I made and how to correct them.
+Information about the workbox precaching module
 
-### 1. Revisions
-
-#### How It Works
+### Revisions
 
 Precaching assets in `globPatterns` will serve content from the ServiceWorker. Look at the screenshot notice how the precached assets are being served `(from ServiceWorker)`.
 
@@ -46,9 +38,7 @@ Precaching assets in `globPatterns` will serve content from the ServiceWorker. L
 
 This means that the user will always receive precached assets by associative revision hash from your last generated service worker.
 
-#### Development Steps
-
-Rebuild the service worker for a new
+Rebuild the service worker for a new `sw.js`
 
 ```bash
 $ workbox generateSW workbox-config.js
@@ -88,4 +78,4 @@ Newly generated `sw.js`
 
 <hr>
 
-Above is a simple example of how the revision hashes change. This allows workbox-precaching to know when the file has changed and update it.
+Above is a simple example of how the revision hashes change in `sw.js`. This allows workbox-precaching to know when the file has changed and update it.
