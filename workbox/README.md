@@ -32,9 +32,9 @@ Information about the workbox precaching module
 
 Precaching assets in `globPatterns` will serve content from the ServiceWorker. Look at the screenshot notice how the precached assets are being served `(from ServiceWorker)`.
 
-![Precached Assets Network Tab](https://github.com/dylantyates/js-lib/blob/master/workbox/screenshots/precached-assets-network-tab.png)
-
 `Chrome > Developer Tools > Network Tab`
+
+![Precached Assets Network Tab](https://github.com/dylantyates/js-lib/blob/master/workbox/screenshots/precached-assets-network-tab.png)
 
 This means that the user will always receive precached assets by associative revision hash from your last generated service worker.
 
