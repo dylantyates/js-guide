@@ -26,7 +26,7 @@ There are many mistakes I made when first working with service workers. Here are
 
 Precaching assets in `globPatterns` will serve content from the ServiceWorker. Look at the screenshot notice how the precached assets are being served `(from ServiceWorker)`.
 
-![Precached Assets Network Tab](https://github.com/dylantyates/js-lib/blob/master/workbox/gotchas/precached-assets-network-tab.png)
+![Precached Assets Network Tab](https://github.com/dylantyates/js-lib/blob/master/workbox/screenshots/precached-assets-network-tab.png)
 
 `Chrome > Developer Tools > Network Tab`
 
