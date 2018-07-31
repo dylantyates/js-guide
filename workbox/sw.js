@@ -24,16 +24,14 @@ workbox.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index.html",
-    "revision": "092bbe51132bd16eb2d153c7f4c19a96"
+    "revision": "351c397cf0439a0b42e33b2a5370a668"
   },
   {
     "url": "styles.css",
-    "revision": "87f35c56684b9189642b8b23220b80d4"
-  },
-  {
-    "url": "workbox.png",
-    "revision": "9a36db57ea67cedbf0d2d9a7a21188d1"
+    "revision": "0a853908487fd3fa70753ec2e9b48def"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerRoute(/\.(?:png|jpg|jpeg|svg)$/, workbox.strategies.staleWhileRevalidate({ cacheName: "images", plugins: [] }), 'GET');

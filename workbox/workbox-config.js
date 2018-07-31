@@ -1,11 +1,9 @@
 module.exports = {
-  "globDirectory": ".",
-  "skipWaiting": true,
-  "clientsClaim": true,
-  "globPatterns": [
-    "index.html",
-    "styles.css",
-    "workbox.png"
+  globDirectory: '.',
+  skipWaiting: true,
+  clientsClaim: true,
+  globPatterns: [
+    '**/*.{html,css}'
   ],
-  "swDest": "sw.js",
+  swDest: 'sw.js'
 };
