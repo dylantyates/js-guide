@@ -16,7 +16,8 @@ brew install yarn
 
 1. [Setup Local Development Environment](#Setup-Local-Development-Environment)
 2. [Refactor Create-React-App](#Refactor-Create-React-App)
-2. [Add Source Files](#Add-Source-Files)
+3. [Add Source Files](#Add-Source-Files)
+4. [Pass A Prop](#Pass-A-Prop)
 
 ### Setup Local Development Environment
 
@@ -52,4 +53,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // This goes above your copied code
+```
+
+### Pass A Prop
+
+<strong>index.js</strong>
+
+```js
+// BOARD
+class Board extends React.Component {
+  renderSquare(i) {
+    return <Square value={i} />; // Pass props to Square
+  }
+}
+
+// SQUARE
+class Square extends React.Component {
+  render() {
+    return (
+      <button className="square">
+        {this.props.value} // Add props to Square
+      </button>
+    );
+  }
+}
 ```
