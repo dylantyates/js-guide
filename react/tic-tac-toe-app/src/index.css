@@ -13,7 +13,27 @@ h1 {
 }
 
 ol, ul {
-  padding-left: 30px;
+  margin: 0 auto;
+  padding: 40px 0;
+  list-style: none;
+}
+
+li {
+  line-height: 50px;
+}
+
+li > button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.24);
+  cursor: pointer;
+  transition: color 0.4s ease;
+}
+
+li > button:hover {
+  color: rgba(255,255,255,1);
 }
 
 .board-row {
@@ -24,13 +44,8 @@ ol, ul {
 }
 
 .status {
-  display: block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 20px;
-  color: #424242;
-  font-weight: bolder;
-  border: 10px solid #651fff;
+  color: #fff;
+  font-size: 24px;
 }
 
 .game-board {
@@ -40,6 +55,7 @@ ol, ul {
   max-width: 640px;
   margin: 0 auto;
   padding: 20px;
+  font-size: 18px;
 }
 
 .game-grid {
@@ -62,10 +78,13 @@ ol, ul {
   height: 100px;
   padding: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
-.square:focus {
+.square:focus,
+.square:hover {
   outline: none;
+  background-color: rgba(101, 31, 255, 0.14);
 }
 
 .kbd-navigation .square:focus {
@@ -76,10 +95,5 @@ ol, ul {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.game-info {
-  margin-left: 20px;
+  justify-content: flex-start;
 }

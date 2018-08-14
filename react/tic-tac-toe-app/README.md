@@ -25,6 +25,8 @@ brew install yarn
 9. [Add Game State Event Handler](#Add-Game-State-Event-Handler)
 10. [Make Square A Functional Component](#Make-Square-A-Functional-Component)
 11. [Add Player Turns To Game State](#Add-Player-Turns-To-Game-State)
+12. [Add Game Winning Logic](#Add-Game-Winning-Logic)
+13. [Lift Up Game State To Game](#Lift-Up-Game-State-To-Game)
 
 ### Setup Local Development Environment
 
@@ -322,4 +324,25 @@ class Game extends React.Component {
 ReactDOM.render(
   ...
 );
+```
+
+### Lift Up Game State To Game
+
+```js
+class Game extends React.Component {
+  render() {
+    return (
+      <div className="game">
+        <h1>Tic-Tac-Toe</h1>
+        <div className="game-board">
+          <Board />
+        </div>
+        <div className="game-info">
+          <div>{/* status */}</div>
+          <ol>{/* TODO */}</ol>
+        </div>
+      </div>
+    );
+  }
+}
 ```
