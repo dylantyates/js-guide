@@ -18,6 +18,7 @@ brew install yarn
 2. [Refactor Create-React-App](#Refactor-Create-React-App)
 3. [Add Source Files](#Add-Source-Files)
 4. [Pass A Prop](#Pass-A-Prop)
+5. [Add Event Handler](#Add-Event-Handler)
 
 ### Setup Local Development Environment
 
@@ -73,6 +74,22 @@ class Square extends React.Component {
     return (
       <button className="square">
         {this.props.value} // Add props to Square
+      </button>
+    );
+  }
+}
+```
+
+### Add Event Handler
+
+```js
+class Square extends React.Component {
+  render() {
+    return (
+      <button
+        className="square"
+        onClick={() => alert('click')}> // Add onClick event handler
+        {this.props.value}
       </button>
     );
   }
