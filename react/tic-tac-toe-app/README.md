@@ -218,7 +218,7 @@ class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
       names: Array(2).fill('One', 'Two'), // Custom
-      playerOne: true, // Add playerOne boolean and set to true
+      playerOne: true, // This is xIsNext in the original tutorial
       playerName: true, // Custom
     };
   }
@@ -247,4 +247,79 @@ class Board extends React.Component {
 }
 
 // All lines noted with '//custom' are my own modifications for steez :)
+```
+
+### Add Game Winning Logic
+
+```js
+// Add helper function to check if player wins
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ]; // Possible winning combos
+
+  // Loop through game state and match winning values
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+function Square(props) {
+  ...
+}
+
+class Board extends React.Component {
+  constructor(props) {
+    ...
+  }
+
+  handleClick(i) {
+    ...
+    // Add early return to cancel clicks after player wins
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    ...
+    });
+  }
+
+  renderSquare(i) {
+    ...
+  }
+
+  render() {
+    ...
+    // Render helper function
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    // Render winning message or player turn
+    if (winner) {
+      status = 'Player ' + (!this.state.playerName ? 'One' : 'Two') + ' Wins!';
+    } else {
+      status = 'Player ' + (this.state.playerName ? 'One' : 'Two') + ' (' + (this.state.playerOne ? 'X' : 'O') + ')';
+    }
+    ...
+  }
+}
+
+class Game extends React.Component {
+  ...
+}
+
+// ========================================
+
+ReactDOM.render(
+  ...
+);
 ```
