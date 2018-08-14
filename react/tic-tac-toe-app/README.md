@@ -17,10 +17,10 @@ brew install yarn
 1. [Setup Local Development Environment](#Setup-Local-Development-Environment)
 2. [Refactor Create-React-App](#Refactor-Create-React-App)
 3. [Add Source Files](#Add-Source-Files)
-4. [Pass A Prop](#Pass-A-Prop)
-5. [Add Event Handler](#Add-Event-Handler)
-6. [Initialize State](#Initialize-State)
-7. [Lift Up Game State](#Lift-Up-Game-State)
+4. [Pass A Prop To Square](#Pass-A-Prop-To-Square)
+5. [Add Event Handler To Square](#Add-Event-Handler-To-Square)
+6. [Initialize Game State In Square](#Initialize-Game-State-In-Square)
+7. [Lift Up Game State To Board](#Lift-Up-Game-State-To-Board)
 8. [Remove Game State From Square](#Remove-Game-State-From-Square)
 
 ### Setup Local Development Environment
@@ -59,7 +59,7 @@ import './index.css';
 // This goes above your copied code
 ```
 
-### Pass A Prop
+### Pass A Prop To Square
 
 <strong>index.js</strong>
 
@@ -83,7 +83,7 @@ class Square extends React.Component {
 }
 ```
 
-### Add Event Handler
+### Add Event Handler To Square
 
 ```js
 class Square extends React.Component {
@@ -99,7 +99,7 @@ class Square extends React.Component {
 }
 ```
 
-### Initialize State
+### Initialize Game State In Square
 
 ```js
 class Square extends React.Component {
@@ -123,7 +123,7 @@ class Square extends React.Component {
 }
 ```
 
-### Lift Up Game State
+### Lift Up Game State To Board
 
 ```js
 class Board extends React.Component {
