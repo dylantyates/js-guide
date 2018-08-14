@@ -20,6 +20,7 @@ brew install yarn
 4. [Pass A Prop](#Pass-A-Prop)
 5. [Add Event Handler](#Add-Event-Handler)
 6. [Initialize State](#Initialize-State)
+7. [Lift Up Game State](#Lift-Up-Game-State)
 
 ### Setup Local Development Environment
 
@@ -118,5 +119,29 @@ class Square extends React.Component {
       </button>
     );
   }
+}
+```
+
+### Lift Up Game State
+
+```js
+class Board extends React.Component {
+  // Initialize Board state
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
+  renderSquare(i) {
+    return (
+      <Square
+        value={this.state.squares[i]} // Pass Board State to Square
+        onClick={() => this.handleClick(i)} /> // Maintain Board state's privacy
+    ); // Added return (...); for legibility
+  }
+
+  // ... //
 }
 ```
