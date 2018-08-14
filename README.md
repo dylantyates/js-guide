@@ -27,7 +27,6 @@ _**Note:** This project was automatically created by [cookiecutter-git](https://
 - [Homebrew](https://brew.sh/)
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
-- [polymer-cli](https://www.polymer-project.org/3.0/start/install-3-0/)
 
 ## Installation
 
@@ -37,9 +36,6 @@ $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 
 # Install Node.js and npm
 $ brew install node
-
-# Install polymer-cli (globally)
-$ npm install -g polymer-cli
 ```
 
 ## Usage
