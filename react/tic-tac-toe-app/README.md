@@ -21,5 +21,14 @@ $ brew install yarn
 
 ```bash
 $ npm install -g create-react-app
+$ cd react
 $ yarn create react-app tic-tac-toe-app
+$ cd tic-tac-toe-app
+```
+
+### Refactor Create-React-App
+
+```bash
+$ cd tic-tac-toe-app
+$ rm -rfv src/*
 ```
