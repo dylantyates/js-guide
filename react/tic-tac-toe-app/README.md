@@ -21,6 +21,7 @@ brew install yarn
 5. [Add Event Handler](#Add-Event-Handler)
 6. [Initialize State](#Initialize-State)
 7. [Lift Up Game State](#Lift-Up-Game-State)
+8. [Remove Game State From Square](#Remove-Game-State-From-Square)
 
 ### Setup Local Development Environment
 
@@ -143,5 +144,24 @@ class Board extends React.Component {
   }
 
   // ... //
+}
+```
+
+### Remove Game State From Square
+
+```js
+class Square extends React.Component {
+  render() {
+
+    // Remove constructor()
+
+    return (
+      <button
+        className="square"
+        onClick={() => this.props.onClick()}> // Add game state onClick event handler
+          {this.props.value} // Replace state with props
+      </button>
+    );
+  }
 }
 ```
