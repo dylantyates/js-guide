@@ -19,6 +19,7 @@ brew install yarn
 3. [Add Source Files](#Add-Source-Files)
 4. [Pass A Prop](#Pass-A-Prop)
 5. [Add Event Handler](#Add-Event-Handler)
+6. [Initialize State](#Initialize-State)
 
 ### Setup Local Development Environment
 
@@ -90,6 +91,30 @@ class Square extends React.Component {
         className="square"
         onClick={() => alert('click')}> // Add onClick event handler
         {this.props.value}
+      </button>
+    );
+  }
+}
+```
+
+### Initialize State
+
+```js
+class Square extends React.Component {
+  // Add constuctor class to initialize state
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
+  render() {
+    return (
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'X'})}> // Update state with onClick event handler
+        {this.state.value} // Update from props to state
       </button>
     );
   }
