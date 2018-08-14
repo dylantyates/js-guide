@@ -22,6 +22,7 @@ brew install yarn
 6. [Initialize Game State In Square](#Initialize-Game-State-In-Square)
 7. [Lift Up Game State To Board](#Lift-Up-Game-State-To-Board)
 8. [Remove Game State From Square](#Remove-Game-State-From-Square)
+9. [Add Game State Event Handler](#Add-Game-State-Event-Handler)
 
 ### Setup Local Development Environment
 
@@ -165,3 +166,30 @@ class Square extends React.Component {
   }
 }
 ```
+
+### Add Game State Event Handler
+
+```js
+class Board extends React.Component {
+  constructor(props) {
+    ...
+  }
+
+  // Add game state event handler
+  handleClick(i) {
+    const squares = this.state.squares.slice(); // Use slice() for immutability
+    squares[i] = 'X'; // Mark 'X' in Square
+    this.setState({squares: squares}); // Set game state
+  }
+
+  renderSquare(i) {
+    ...
+  }
+
+  render() {
+    ...
+  }
+}
+```
+
+__Square is now a  CONTROLLED COMPONENT__
