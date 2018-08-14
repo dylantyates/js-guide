@@ -23,6 +23,8 @@ brew install yarn
 7. [Lift Up Game State To Board](#Lift-Up-Game-State-To-Board)
 8. [Remove Game State From Square](#Remove-Game-State-From-Square)
 9. [Add Game State Event Handler](#Add-Game-State-Event-Handler)
+10. [Make Square A Functional Component](#Make-Square-A-Functional-Component)
+11. [Add Player Turns To Game State](#Add-Player-Turns-To-Game-State)
 
 ### Setup Local Development Environment
 
@@ -205,4 +207,44 @@ function Square(props) {
     </button>
   );
 }
+```
+
+### Add Player Turns To Game State
+
+```js
+class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+      names: Array(2).fill('One', 'Two'), // Custom
+      playerOne: true, // Add playerOne boolean and set to true
+      playerName: true, // Custom
+    };
+  }
+
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    const names = this.state.square.slice(); // Custom
+    names[i] = this.state.playerName ? 'One' : 'Two'; // Custom
+    squares[i] = this.state.playerOne ? 'X' : 'O'; // Toggle values between 'X' and 'O'
+    this.setState({
+      squares: squares,
+      names: names, // Custom
+      playerOne: !this.state.playerOne, // Toggle boolean to switch turns
+      playerName: !this.state.playerName, // Custom
+    });
+  }
+
+  renderSquare(i) {
+    ...
+  }
+
+  render() {
+    const status = 'Player ' + (this.state.playerName ? 'One' : 'Two') + '(' + (this.state.playerOne + ')'; // Custom
+    ...
+  }
+}
+
+// All lines noted with '//custom' are my own modifications for steez :)
 ```
