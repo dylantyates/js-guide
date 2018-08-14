@@ -190,6 +190,19 @@ class Board extends React.Component {
     ...
   }
 }
+
+// NOTE: Square is now a CONTROLLED COMPONENT
 ```
 
-__Square is now a  CONTROLLED COMPONENT__
+### Make Square A Functional Component
+
+```js
+// Replace Square class with function
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
+}
+```
