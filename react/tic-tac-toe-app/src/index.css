@@ -20,6 +20,7 @@ ol, ul {
 
 li {
   line-height: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
 }
 
 li > button {
