@@ -29,6 +29,15 @@ brew install yarn
 13. [Lift Up Game State To Game](#Lift-Up-Game-State-To-Game)
 14. [Show History Of Moves](#Show-History-Of-Moves)
 
+##### Additional Challenges
+
+- [Display Location For Moves](#Display-Location-For-Moves)
+- [Highlight Current Move](#Highlight-Current-Move)
+- [Refactor Board With Two Loops](#Refactor-Board-With-Two-Loops)
+- [Add Ascending Descending Toggle](#Add-Ascending-Descending-Toggle)
+- [Highlight Winning Squares](#Highlight-Winning-Squares)
+- [Game Logic For Draws](#Game-Logic-For-Draws)
+
 ### Setup Local Development Environment
 
 ```bash
@@ -541,3 +550,21 @@ class Game extends React.Component {
   }
 }
 ```
+
+That wraps up the Official React Tutorial with some basic customization.
+
+## Additional Challenges
+
+Below are the additional challenges in order from least to most difficult.
+
+### Display Location For Moves
+
+### Highlight Current Move
+
+### Refactor Board With Two Loops
+
+### Add Ascending Descending Toggle
+
+### Highlight Winning Squares
+
+### Game Logic For Draws

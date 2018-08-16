@@ -9,13 +9,17 @@ body {
 
 h1 {
   font: 54px "Pacifico", "cursive";
-  line-height: 128px;
+  margin-bottom: 0;
 }
 
 ol, ul {
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 0;
   list-style: none;
+}
+
+ul > li:nth-child(1) {
+  border-top: 1px solid rgba(255,255,255,0.14);
 }
 
 li {
@@ -48,6 +52,7 @@ li > button:hover {
 .status {
   color: #fff;
   font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .game-board {
