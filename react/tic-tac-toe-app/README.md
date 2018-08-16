@@ -27,6 +27,7 @@ brew install yarn
 11. [Add Player Turns To Game State](#Add-Player-Turns-To-Game-State)
 12. [Add Game Winning Logic](#Add-Game-Winning-Logic)
 13. [Lift Up Game State To Game](#Lift-Up-Game-State-To-Game)
+14. [Show History Of Moves](#Show-History-Of-Moves)
 
 ### Setup Local Development Environment
 
@@ -328,18 +329,212 @@ ReactDOM.render(
 
 ### Lift Up Game State To Game
 
+There is a lot to this since our game state in Board was pretty well featured so I will break it down into sub-sections to understand the state lifting process better.
+
+##### Initialize state in Game
+
 ```js
 class Game extends React.Component {
+  // Move constructor from Board to Game and add history prop
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+          names: Array(2).fill('One','Two')
+        }
+    ],
+      playerOne: true,
+      playerName: true,
+    };
+  }
+}
+```
+
+##### Transform the Board
+
+```js
+class Board extends React.Component {
+
+  // Delete handleClick
+
+  renderSquare(i) {
+    return (
+      // Convert from 'this.state' to 'this.props' in Square
+      <Square
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)} />
+    );
+  }
+
   render() {
+    // Remove everything before return()
+    return (
+      <div className="game-grid">
+        // Remove status
+        <div className="board-row">
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
+        </div>
+      </div>
+    );
+  }
+}
+```
+
+##### Update Game's render() function
+
+```js
+class Game extends React.Component {
+
+  render() {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const winner = calculateWinner(current.squares);
+
+    let status;
+    if (winner) {
+      status = 'Player ' + (!this.state.playerName ? 'One' : 'Two') + ' Wins!';
+    } else {
+      status = 'Player ' + (this.state.playerName ? 'One' : 'Two') + ' (' + (this.state.playerOne ? 'X' : 'O') + ')';
+    }
+
     return (
       <div className="game">
         <h1>Tic-Tac-Toe</h1>
         <div className="game-board">
-          <Board />
+          // Add current.squares and handleClick()
+          <Board
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}/>
         </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
+        <div className="game-board">
+          // Move status into Game
+          <div className="status">{status}</div>
+          <ul>{/* Add moves in next section */}</ul>
+        </div>
+      </div>
+    );
+  }
+}
+```
+
+##### Lift handleClick() up to Game
+
+```js
+class Game extends React.Component {
+
+  handleClick(i) {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const names = current.names.slice();
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    names[i] = this.state.playerName ? 'One' : 'Two';
+    squares[i] = this.state.playerOne ? 'X' : 'O';
+    this.setState({
+      history: history.concat([{
+        squares: squares,
+        names: names,
+      }]),
+      playerOne: !this.state.playerOne,
+      playerName: !this.state.playerName,
+    });
+  }
+}
+```
+
+### Show History Of Moves
+
+```js
+class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+          names: Array(2).fill('One','Two')
+        }
+      ],
+      // Add stepNumber
+      stepNumber: 0,
+      playerOne: true,
+      playerName: true,
+    }
+  }
+
+  handleClick(i) {
+    // Throw away future moves after time travel
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+
+    ...
+
+    this.setState({
+      history: history.concat([{
+        squares: squares,
+        names: names,
+      }]),
+      // Set step number to last history entry
+      stepNumber: history.length,
+      playerOne: !this.state.playerOne,
+      playerName: !this.state.playerName,
+    });
+  }
+
+  jumpTo(step) {
+    this.setState({
+      stepNumber: step,
+      playerName: (step % 2) === 0,
+      playerOne: (step % 2) === 0,
+    })
+  }
+
+  render() {
+    const history = this.state.history;
+    // Render current move according to stepNumber
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+    // Map over history and return dynamic list of moves
+    const moves = history.map((step, move) => {
+      const desc = move ? 'Go to move #' + move : 'Reset Game';
+      return (
+        // Make sure to add unique key otherwise React throws error
+        <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>
+            {desc}
+          </button>
+        </li>
+      );
+    });
+    ...
+
+    return (
+      <div className="game">
+        <h1>Tic-Tac-Toe</h1>
+        <div className="game-board">
+          <Board
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}/>
+        </div>
+        <div className="game-board">
+          <div className="status">{status}</div>
+          // Add moves to list (changed from ol to ul for styling)
+          <ul>{moves}</ul>
         </div>
       </div>
     );
