@@ -338,7 +338,7 @@ ReactDOM.render(
 
 ### Lift Up Game State To Game
 
-There is a lot to this since our game state in Board was pretty well featured so I will break it down into sub-sections to understand the state lifting process better.
+There is a lot to this since our game state in `Board` was pretty well featured so I will break it down into sub-sections to understand the state lifting process better.
 
 ##### Initialize state in Game
 
@@ -559,7 +559,7 @@ Below are the additional challenges in order from least to most difficult.
 
 ### Display Location For Moves
 
-Create getLocation() function and locations object with corresponding rows and columns for each possible move.
+Create `getLocation()` function and `locations` object with corresponding rows and columns for each possible `move`.
 
 ```js
 function getLocation(move) {
@@ -625,7 +625,30 @@ const moves = history.map((step, move) => {
 
 ### Highlight Current Move
 
-WIP
+Create your style class for the current move button.
+
+```css
+.button-selected {
+  color: rgba(255,255,255,1);
+}
+```
+
+Add `currentMove` that toggles css class for current move.
+
+```js
+const moves = history.map((step, move) => {
+  ...
+  // Add css class to current move
+  const currentMove = move === this.state.stepNumber ? 'button-selected' : ' ';
+  ...
+  return (
+    <li key={move}>
+      // Add jsx className on button for toggling css class
+      <button className={currentMove} onClick={() => this.jumpTo(move)}>{desc} <small>{currentLocation}</small></button>
+    </li>
+  );
+});
+```
 
 ### Refactor Board With Two Loops
 
