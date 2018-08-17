@@ -22,6 +22,21 @@ function calculateWinner(squares) {
   return null;
 }
 
+function getLocation(move) {
+  const locations = {
+    0: '[row: 1 | column: 1]',
+    1: '[row: 1 | column: 2]',
+    2: '[row: 1 | column: 3]',
+    3: '[row: 2 | column: 1]',
+    4: '[row: 2 | column: 2]',
+    5: '[row: 2 | column: 3]',
+    6: '[row: 3 | column: 1]',
+    7: '[row: 3 | column: 2]',
+    8: '[row: 3 | column: 3]'
+  }
+  return locations[move];
+}
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -69,7 +84,7 @@ class Game extends React.Component {
       history: [
         {
           squares: Array(9).fill(null),
-          names: Array(2).fill('One','Two')
+          names: Array(2).fill('One','Two'),
         }
     ],
       stepNumber: 0,
@@ -92,7 +107,8 @@ class Game extends React.Component {
       history: history.concat([
         {
           squares: squares,
-          names: names
+          names: names,
+          currentLocation: getLocation(i),
         }
     ]),
       stepNumber: history.length,
@@ -115,12 +131,13 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
+      const currentLocation = step.currentLocation ? step.currentLocation : '';
       const desc = move ?
-        'Go to move #' + move :
+        'Move #' + move :
         'Reset Game';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}>{desc} <small>{currentLocation}</small></button>
         </li>
       );
     });

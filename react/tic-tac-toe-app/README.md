@@ -14,29 +14,29 @@ brew install yarn
 
 ## Overview
 
-1. [Setup Local Development Environment](#Setup-Local-Development-Environment)
-2. [Refactor Create-React-App](#Refactor-Create-React-App)
-3. [Add Source Files](#Add-Source-Files)
-4. [Pass A Prop To Square](#Pass-A-Prop-To-Square)
-5. [Add Event Handler To Square](#Add-Event-Handler-To-Square)
-6. [Initialize Game State In Square](#Initialize-Game-State-In-Square)
-7. [Lift Up Game State To Board](#Lift-Up-Game-State-To-Board)
-8. [Remove Game State From Square](#Remove-Game-State-From-Square)
-9. [Add Game State Event Handler](#Add-Game-State-Event-Handler)
-10. [Make Square A Functional Component](#Make-Square-A-Functional-Component)
-11. [Add Player Turns To Game State](#Add-Player-Turns-To-Game-State)
-12. [Add Game Winning Logic](#Add-Game-Winning-Logic)
-13. [Lift Up Game State To Game](#Lift-Up-Game-State-To-Game)
-14. [Show History Of Moves](#Show-History-Of-Moves)
+1. [Setup Local Development Environment](#setup-local-development-environment)
+2. [Refactor Create React App](#refactor-create-react-app)
+3. [Add Source Files](#add-source-files)
+4. [Pass A Prop To Square](#pass-a-prop-to-square)
+5. [Add Event Handler To Square](#add-event-handler-to-square)
+6. [Initialize Game State In Square](#initialize-game-state-in-square)
+7. [Lift Up Game State To Board](#lift-up-game-state-to-board)
+8. [Remove Game State From Square](#remove-game-state-from-square)
+9. [Add Game State Event Handler](#add-game-state-event-handler)
+10. [Make Square A Functional Component](#make-square-a-functional-component)
+11. [Add Player Turns To Game State](#add-player-turns-to-game-state)
+12. [Add Game Winning Logic](#add-game-winning-logic)
+13. [Lift Up Game State To Game](#lift-up-game-state-to-game)
+14. [Show History Of Moves](#show-history-of-moves)
 
 ##### Additional Challenges
 
-- [Display Location For Moves](#Display-Location-For-Moves)
-- [Highlight Current Move](#Highlight-Current-Move)
-- [Refactor Board With Two Loops](#Refactor-Board-With-Two-Loops)
-- [Add Ascending Descending Toggle](#Add-Ascending-Descending-Toggle)
-- [Highlight Winning Squares](#Highlight-Winning-Squares)
-- [Game Logic For Draws](#Game-Logic-For-Draws)
+- [Display Location For Moves](#display-location-for-moves)
+- [Highlight Current Move](#highlight-current-move)
+- [Refactor Board With Two Loops](#refactor-board-with-two-loops)
+- [Add Ascending Descending Toggle](#add-ascending-descending-toggle)
+- [Highlight Winning Squares](#highlight-winning-squares)
+- [Game Logic For Draws](#game-logic-for-draws)
 
 ### Setup Local Development Environment
 
@@ -48,7 +48,7 @@ yarn create react-app tic-tac-toe-app
 cd tic-tac-toe-app
 ```
 
-### Refactor Create-React-App
+### Refactor Create React App
 
 ```bash
 cd tic-tac-toe-app
@@ -559,12 +559,86 @@ Below are the additional challenges in order from least to most difficult.
 
 ### Display Location For Moves
 
+Create getLocation() function and locations object with corresponding rows and columns for each possible move.
+
+```js
+function getLocation(move) {
+  const locations = {
+    0: '[row: 1 | column: 1]',
+    1: '[row: 1 | column: 2]',
+    2: '[row: 1 | column: 3]',
+    3: '[row: 2 | column: 1]',
+    4: '[row: 2 | column: 2]',
+    5: '[row: 2 | column: 3]',
+    6: '[row: 3 | column: 1]',
+    7: '[row: 3 | column: 2]',
+    8: '[row: 3 | column: 3]'
+  }
+  return locations[move];
+}
+```
+
+Set `currentLocation` in the `handleClick()` event.
+
+```js
+class Game extends React.Component {
+  constructor(props) {
+    ...
+  }
+  handleClick(i) {
+    ...
+    this.setState({
+      history: history.concat([
+        {
+          squares: squares,
+          names: names,
+          // Set currentLocation
+          currentLocation: getLocation(i),
+        }
+    ]),
+      ...
+    });
+  }
+}
+```
+
+Add current location to `moves` array.
+
+```js
+const moves = history.map((step, move) => {
+  // Add currentLocation conditional
+  const currentLocation = step.currentLocation ? step.currentLocation : '';
+  const desc = move ?
+    // Refactored desc to be shorter for mobile
+    'Move #' + move :
+    'Reset Game';
+  return (
+    <li key={move}>
+      <button onClick={() => this.jumpTo(move)}>
+        // Add currentLocation to move button
+        {desc} <small>{currentLocation}</small>
+      </button>
+    </li>
+  );
+});
+```
+
 ### Highlight Current Move
+
+WIP
 
 ### Refactor Board With Two Loops
 
+WIP
+
 ### Add Ascending Descending Toggle
+
+WIP
 
 ### Highlight Winning Squares
 
+WIP
+
 ### Game Logic For Draws
+
+WIP
