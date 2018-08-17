@@ -39,16 +39,34 @@ function getLocation(move) {
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button
+      className="square"
+      onClick={props.onClick}>
       {props.value}
     </button>
   );
 }
 
 class Board extends React.Component {
+  createBoard(row, col) {
+    const board = [];
+    let cellCounter = 0;
+
+    for(let i = 0; i < row; i++) {
+      const columns = [];
+      for(let j = 0; j < col; j++) {
+        columns.push(this.renderSquare(cellCounter++));
+      }
+      board.push(<div key={i} className="board-row">{columns}</div>);
+    }
+
+    return board;
+  }
+
   renderSquare(i) {
     return (
       <Square
+        key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)} />
     );
@@ -57,21 +75,7 @@ class Board extends React.Component {
   render() {
     return (
       <div className="game-grid">
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {this.createBoard(3,3)}
       </div>
     );
   }

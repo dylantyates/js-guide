@@ -652,7 +652,52 @@ const moves = history.map((step, move) => {
 
 ### Refactor Board With Two Loops
 
-WIP
+This all happens in your `Board` class. First add `createBoard()` function which loops through rows and columns and creates game board.
+
+```js
+createBoard(row, col) {
+  const board = [];
+  let cellCounter = 0;
+
+  // Loop for rows
+  for(let i = 0; i < row; i++) {
+    const columns = [];
+    // Loop for columns
+    for(let j = 0; j < col; j++) {
+      columns.push(this.renderSquare(cellCounter++));
+    }
+    // Each div needs a unique key !!!
+    board.push(<div key={i} className="board-row">{columns}</div>);
+
+  return board;
+}
+```
+
+Add `key` to `renderSquare()` function.
+
+```js
+renderSquare(i) {
+  return (
+    <Square
+      // Add unique keys for Square
+      key={i}
+      value={this.props.squares[i]}
+      onClick={() => this.props.onClick(i)} />
+  );
+}
+```
+
+Refactor render to use `createBoard()` function.
+
+```js
+render() {
+  return (
+    <div className="game-grid">
+      {this.createBoard(3,3)}
+    </div>
+  );
+}
+```
 
 ### Add Ascending Descending Toggle
 
