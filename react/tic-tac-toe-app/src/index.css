@@ -77,7 +77,7 @@ li > button.button-selected {
 }
 
 .square {
-  background: transparent;
+  background-color: transparent;
   font-family: "Pacifico", "cursive";
   border: 10px solid #651fff;
   font-size: 45px;
@@ -90,9 +90,13 @@ li > button.button-selected {
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  transition: background-color 300ms ease;
 }
 
-.square:focus,
+.square:focus {
+  outline: none;
+}
+
 .square:hover {
   outline: none;
   background-color: rgba(101, 31, 255, 0.14);
@@ -107,4 +111,9 @@ li > button.button-selected {
   min-height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.winning,
+.winning:hover {
+  background-color: #ffff00;
 }

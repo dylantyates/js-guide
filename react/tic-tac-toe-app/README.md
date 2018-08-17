@@ -34,7 +34,6 @@ brew install yarn
 - [Display Location For Moves](#display-location-for-moves)
 - [Highlight Current Move](#highlight-current-move)
 - [Refactor Board With Two Loops](#refactor-board-with-two-loops)
-- [Add Ascending Descending Toggle](#add-ascending-descending-toggle)
 - [Highlight Winning Squares](#highlight-winning-squares)
 - [Game Logic For Draws](#game-logic-for-draws)
 
@@ -559,7 +558,7 @@ Below are the additional challenges in order from least to most difficult.
 
 ### Display Location For Moves
 
-Create `getLocation()` function and `locations` object with corresponding rows and columns for each possible `move`.
+Create `getLocation()` function and `locations` object with corresponding rows and columns for each possible `move`
 
 ```js
 function getLocation(move) {
@@ -625,7 +624,7 @@ const moves = history.map((step, move) => {
 
 ### Highlight Current Move
 
-Create your style class for the current move button.
+Create your style class for the current move button in `index.css`
 
 ```css
 .button-selected {
@@ -643,7 +642,7 @@ const moves = history.map((step, move) => {
   ...
   return (
     <li key={move}>
-      // Add jsx className on button for toggling css class
+      // Add JSX className on button for toggling css class
       <button className={currentMove} onClick={() => this.jumpTo(move)}>{desc} <small>{currentLocation}</small></button>
     </li>
   );
@@ -699,13 +698,120 @@ render() {
 }
 ```
 
-### Add Ascending Descending Toggle
-
-WIP
-
 ### Highlight Winning Squares
 
-WIP
+Add winning class to `index.css`
+
+```css
+.winning {
+  background-color: #ffff00;
+}
+```
+
+Refactor `Square` className.
+
+```js
+function Square(props) {
+  return (
+    <button
+      // Add JSX className to Square
+      className={"square" + props.winningClass}
+      onClick={props.onClick}>
+        {props.value}
+    </button>
+  );
+}
+```
+
+Refactor `render()` in `Game` class.
+
+```js
+render() {
+  ...
+  // Convert winner constant to an object with winner and winningRow
+  const { winner, winningRow } = calculateWinner(current.squares)
+  ...
+}
+```
+
+Refactor `render()` in `Game` class.
+
+```js
+render() {
+  ...
+  // Convert winner constant to an object with winner and winningRow
+  const { winner, winningRow } = calculateWinner(current.squares)
+  ...
+
+  return (
+    <div className="game">
+      ...
+      <div className="game-board">
+        <Board
+          // Add winningRow to Board
+          winningSquares={winningRow}
+          squares={current.squares}
+          onClick={(i) => this.handleClick(i)}/>
+      </div>
+      ...
+    </div>
+  );
+}
+```
+
+Refactor `handleClick()` function in `Game` class.
+
+```js
+handleClick(i) {
+  ...
+  // calculateWinner() returns an object so change to Object.key
+  if (calculateWinner(squares).winner || squares[i]) {
+    return;
+  }
+}
+```
+
+Refactor the `calculateWinner()` function to return an object with `winner` and `winningRow`
+
+```js
+function calculateWinner(squares) {
+  ...
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      // Convert to object with winner and winningRow
+      return { winner: squares[a], winningRow: lines[i] };
+    }
+  }
+  // Return null for both object keys
+  return { winner: null, winnerRow: null };
+}
+```
+
+Refactor the `renderSquare()` function with your winning class.
+
+```js
+class Board extends React.Component {
+  ...
+  renderSquare(i) {
+    const winningClass = this.props.winningSquares &&
+    (this.props.winningSquares[0] === i ||
+      this.props.winningSquares[1] === i ||
+      // Note the space before winning !!!
+      this.props.winningSquares[2] === i) ? ' winning' : '';
+
+    return (
+      <Square
+        // Add winningClass to square
+        winningClass={winningClass}
+        key={i}
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)} />
+    );
+  }
+  ...
+}
+```
 
 ### Game Logic For Draws
 
