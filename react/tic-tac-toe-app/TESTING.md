@@ -4,4 +4,8 @@ This guide provides a base for testing with [Jest](https://jestjs.io/) and [Enzy
 
 ## Initial Setup
 
+```bash
+yarn add enzyme enzyme-adapter-react-16 react-test-renderer -D
+```
+
 ## Overview
