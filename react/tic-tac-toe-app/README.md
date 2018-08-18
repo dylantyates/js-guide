@@ -815,4 +815,18 @@ class Board extends React.Component {
 
 ### Game Logic For Draws
 
-WIP
+Add game logic for draws in the `Game` class.
+
+```js
+let status;
+if (winner) {
+  status = 'Player ' + (!this.state.playerName ? 'One' : 'Two') + ' Wins';
+  // If history array is full the game is a tie
+} else if (history.length === 10) {
+  status = 'Draw';
+} else {
+  status = 'Player ' + (this.state.playerName ? 'One' : 'Two') + ' (' + (this.state.playerOne ? 'X' : 'O') + ')';
+}
+```
+
+You should now have a pretty good understanding of the React basics. For further information check out the [official React docs](https://reactjs.org/docs/getting-started.html) for advanced guides, API reference, and more.
