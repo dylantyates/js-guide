@@ -1,4 +1,4 @@
-# React Guide
+# Tic-Tac-Toe App
 
 This guide follows the official [React Tutorial](https://reactjs.org/tutorial/tutorial.html) to create a simple tic-tac-toe game.
 
@@ -11,6 +11,10 @@ I recommend using [Yarn](https://yarnpkg.com/en/) as an alternative to [npm](htt
 ```bash
 brew install yarn
 ```
+
+## Testing
+
+Be sure to checkout [TESTING](https://github.com/dylantyates/js-guide/tree/master/react/tic-tac-toe-app/TESTING.md) for more information on testing the tic-tac-toe app.
 
 ## Overview
 
